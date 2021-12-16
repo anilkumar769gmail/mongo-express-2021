@@ -30,13 +30,14 @@ db.mongoose
     process.exit();
   });
 
-// simple route
+// // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
 require("./app/routes/turorial.routes")(app);
 
+console.log("server.js")
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
