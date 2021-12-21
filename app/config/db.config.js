@@ -1,6 +1,6 @@
 // mongodb+srv:`
 
 module.exports = {
-  url: "mongodb+srv://nmuta:password0@cluster0.xknlu.mongodb.net/tutorials?retryWrites=true&w=majority"
+ url:"mongodb+srv://anilkumar769:anisha769@cluster0.qydbu.mongodb.net/banks?retryWrites=true&w=majority"
 };
  

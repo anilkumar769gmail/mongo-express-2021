@@ -3,17 +3,24 @@ const Tutorial = db.tutorials;
 
 // Create and Save a new Tutorial
 exports.create = (req, res) => {
+  console.log("Trying to create....");
+  console.log(req.body);
+  
+
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.account_number) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
-
+  
   // Create a Tutorial
   const tutorial = new Tutorial({
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+    account_number: req.body.account_number,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address:req.body.address,
+    email:req.body.email,
+    balance:req.body.balance,
   });
 
   // Save Tutorial in the database
@@ -91,13 +98,13 @@ exports.update = (req, res) => {
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
-
-  Tutorial.findByIdAndRemove(id, { useFindAndModify: false })
+  const account_number = req.params.account_number;
+//
+  Tutorial.findByIdAndRemove(account_number, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot delete Tutorial with account_number=${account_number}. Maybe Tutorial was not found!`
         });
       } else {
         res.send({
@@ -107,7 +114,7 @@ exports.delete = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "Could not delete Tutorial with id=" + account_number
       });
     });
 };
